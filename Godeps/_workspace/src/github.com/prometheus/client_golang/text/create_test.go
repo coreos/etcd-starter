@@ -19,8 +19,8 @@ import (
 	"strings"
 	"testing"
 
-	"code.google.com/p/goprotobuf/proto"
-	dto "github.com/prometheus/client_model/go"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/code.google.com/p/goprotobuf/proto"
+	dto "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/prometheus/client_model/go"
 )
 
 func testCreate(t testing.TB) {

@@ -18,7 +18,7 @@ import (
 	"encoding/binary"
 	"io"
 
-	"github.com/coreos/etcd/raft/raftpb"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/raft/raftpb"
 )
 
 func writeEntryTo(w io.Writer, ent *raftpb.Entry) error {

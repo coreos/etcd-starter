@@ -18,7 +18,7 @@ import (
 	"encoding/binary"
 	"io"
 
-	"code.google.com/p/goprotobuf/proto"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/code.google.com/p/goprotobuf/proto"
 )
 
 // WriteDelimited encodes and dumps a message to the provided writer prefixed

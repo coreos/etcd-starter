@@ -20,11 +20,9 @@ import (
 	"sync"
 	"time"
 
-	"code.google.com/p/goprotobuf/proto"
-
-	dto "github.com/prometheus/client_model/go"
-
-	"github.com/prometheus/client_golang/_vendor/perks/quantile"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/code.google.com/p/goprotobuf/proto"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/prometheus/client_golang/_vendor/perks/quantile"
+	dto "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/prometheus/client_model/go"
 )
 
 // A Summary captures individual observations from an event or sample stream and

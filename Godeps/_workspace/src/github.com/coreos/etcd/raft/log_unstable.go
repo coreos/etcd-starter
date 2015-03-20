@@ -14,7 +14,7 @@
 
 package raft
 
-import pb "github.com/coreos/etcd/raft/raftpb"
+import pb "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/raft/raftpb"
 
 // unstable.entris[i] has raft log position i+unstable.offset.
 // Note that unstable.offset may be less than the highest log

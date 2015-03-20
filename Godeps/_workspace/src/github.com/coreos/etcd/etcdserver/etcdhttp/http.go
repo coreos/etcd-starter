@@ -22,9 +22,9 @@ import (
 	"strings"
 	"time"
 
-	etcdErr "github.com/coreos/etcd/error"
-	"github.com/coreos/etcd/etcdserver/etcdhttp/httptypes"
-	"github.com/coreos/etcd/etcdserver/security"
+	etcdErr "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/error"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/etcdserver/etcdhttp/httptypes"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/etcdserver/security"
 )
 
 const (

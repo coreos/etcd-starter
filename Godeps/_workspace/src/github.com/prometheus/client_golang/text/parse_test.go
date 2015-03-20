@@ -18,8 +18,8 @@ import (
 	"strings"
 	"testing"
 
-	"code.google.com/p/goprotobuf/proto"
-	dto "github.com/prometheus/client_model/go"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/code.google.com/p/goprotobuf/proto"
+	dto "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/prometheus/client_model/go"
 )
 
 var parser Parser
@@ -385,7 +385,7 @@ request_duration_microseconds_count 2693
 					},
 				},
 			},
-                },
+		},
 	}
 
 	for i, scenario := range scenarios {

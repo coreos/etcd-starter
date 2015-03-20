@@ -19,10 +19,10 @@ import (
 	"log"
 	"path"
 
-	etcderr "github.com/coreos/etcd/error"
-	"github.com/coreos/etcd/etcdserver"
-	"github.com/coreos/etcd/etcdserver/etcdserverpb"
-	"golang.org/x/net/context"
+	etcderr "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/error"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/etcdserver"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/etcdserver/etcdserverpb"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/golang.org/x/net/context"
 )
 
 func (s *Store) ensureSecurityDirectories() error {

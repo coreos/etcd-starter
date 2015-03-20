@@ -14,7 +14,7 @@
 
 package etcdserver
 
-import "github.com/prometheus/client_golang/prometheus"
+import "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/prometheus/client_golang/prometheus"
 
 var (
 	// TODO: with label in v3?

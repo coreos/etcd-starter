@@ -18,8 +18,8 @@ import (
 	"testing"
 	"time"
 
-	etcdErr "github.com/coreos/etcd/error"
-	"github.com/jonboulle/clockwork"
+	etcdErr "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/error"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/jonboulle/clockwork"
 	"github.com/stretchr/testify/assert"
 )
 

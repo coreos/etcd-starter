@@ -21,9 +21,9 @@ import (
 	"path"
 	"sort"
 
-	"github.com/coreos/etcd/pkg/netutil"
-	"github.com/coreos/etcd/pkg/types"
-	"github.com/coreos/etcd/raft"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/netutil"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/types"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/raft"
 )
 
 // ServerConfig holds the configuration of etcd as taken from the command line or discovery.

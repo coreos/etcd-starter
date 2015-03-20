@@ -8,10 +8,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/coreos/etcd/etcdserver/stats"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/etcdserver/stats"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/types"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/raft/raftpb"
 	"github.com/coreos/etcd/pkg/testutil"
-	"github.com/coreos/etcd/pkg/types"
-	"github.com/coreos/etcd/raft/raftpb"
 )
 
 // TestStreamWriterAttachOutgoingConn tests that outgoingConn can be attached

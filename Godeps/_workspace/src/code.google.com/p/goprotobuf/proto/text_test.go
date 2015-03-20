@@ -39,9 +39,8 @@ import (
 	"strings"
 	"testing"
 
-	"code.google.com/p/goprotobuf/proto"
-
 	pb "./testdata"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/code.google.com/p/goprotobuf/proto"
 )
 
 // textMessage implements the methods that allow it to marshal and unmarshal

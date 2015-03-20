@@ -44,7 +44,7 @@ import (
 	"time"
 
 	. "./testdata"
-	. "code.google.com/p/gogoprotobuf/proto"
+	. "github.com/coreos/etcd-starter/Godeps/_workspace/src/code.google.com/p/gogoprotobuf/proto"
 )
 
 var globalO *Buffer

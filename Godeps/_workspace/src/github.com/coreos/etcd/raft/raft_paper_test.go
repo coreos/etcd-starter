@@ -33,7 +33,7 @@ import (
 	"reflect"
 	"sort"
 
-	pb "github.com/coreos/etcd/raft/raftpb"
+	pb "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/raft/raftpb"
 )
 
 func TestFollowerUpdateTermFromMessage(t *testing.T) {

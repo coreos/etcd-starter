@@ -37,7 +37,7 @@ import (
 	"testing"
 
 	. "./testdata"
-	. "code.google.com/p/goprotobuf/proto"
+	. "github.com/coreos/etcd-starter/Godeps/_workspace/src/code.google.com/p/goprotobuf/proto"
 )
 
 type UnmarshalTextTest struct {

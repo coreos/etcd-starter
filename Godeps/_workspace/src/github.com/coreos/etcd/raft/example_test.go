@@ -15,7 +15,7 @@
 package raft
 
 import (
-	pb "github.com/coreos/etcd/raft/raftpb"
+	pb "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/raft/raftpb"
 )
 
 func applyToStore(ents []pb.Entry)    {}

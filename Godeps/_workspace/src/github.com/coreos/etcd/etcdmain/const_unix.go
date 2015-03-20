@@ -18,7 +18,7 @@ package etcdmain
 
 import (
 	// import procfs FIX godeps.
-	_ "github.com/prometheus/procfs"
+	_ "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/prometheus/procfs"
 )
 
 const (

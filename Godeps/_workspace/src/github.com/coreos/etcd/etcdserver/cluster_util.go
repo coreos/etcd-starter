@@ -24,7 +24,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/coreos/etcd/pkg/types"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/types"
 )
 
 // isMemberBootstrapped tries to check if the given member has been bootstrapped

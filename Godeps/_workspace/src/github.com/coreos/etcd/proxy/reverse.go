@@ -23,7 +23,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/coreos/etcd/etcdserver/etcdhttp/httptypes"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/etcdserver/etcdhttp/httptypes"
 )
 
 // Hop-by-hop headers. These are removed when sent to the backend.

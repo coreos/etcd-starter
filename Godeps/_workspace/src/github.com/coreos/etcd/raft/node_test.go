@@ -19,9 +19,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/raft/raftpb"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/golang.org/x/net/context"
 	"github.com/coreos/etcd/pkg/testutil"
-	"github.com/coreos/etcd/raft/raftpb"
-	"golang.org/x/net/context"
 )
 
 // TestNodeStep ensures that node.Step sends msgProp to propc chan

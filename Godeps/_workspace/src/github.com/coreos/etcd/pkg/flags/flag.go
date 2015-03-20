@@ -22,7 +22,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/coreos/etcd/pkg/transport"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/transport"
 )
 
 // DeprecatedFlag encapsulates a flag that may have been previously valid but

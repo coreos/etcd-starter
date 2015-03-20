@@ -18,7 +18,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 
-	"github.com/coreos/etcd/raft/raftpb"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/raft/raftpb"
 )
 
 type Config4 struct {
