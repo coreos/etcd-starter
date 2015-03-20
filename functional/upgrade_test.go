@@ -14,14 +14,18 @@ import (
 )
 
 var (
-	v1BinPath      = path.Join(binDir, "1")
-	v2BinPath      = path.Join(binDir, "2")
+	v1BinPath      = path.Join(binDir, "1", "etcd")
+	v2BinPath      = path.Join(binDir, "2", "etcd")
 	etcdctlBinPath string
 )
 
 func init() {
 	os.RemoveAll(binDir)
-	if err := os.Mkdir(binDir, 0700); err != nil {
+	if err := os.MkdirAll(path.Join(binDir, "1"), 0700); err != nil {
+		fmt.Printf("unexpected Mkdir error: %v\n", err)
+		os.Exit(1)
+	}
+	if err := os.MkdirAll(path.Join(binDir, "2"), 0700); err != nil {
 		fmt.Printf("unexpected Mkdir error: %v\n", err)
 		os.Exit(1)
 	}
