@@ -76,11 +76,11 @@ func StartDesiredVersion(binDir string, args []string) {
 	var p string
 	switch ver {
 	case internalV1:
-		p = path.Join(binDir, "1")
+		p = path.Join(binDir, "1", "etcd")
 	case internalV2:
-		p = path.Join(binDir, "2")
+		p = path.Join(binDir, "2", "etcd")
 	case internalV2Proxy:
-		p = path.Join(binDir, "2")
+		p = path.Join(binDir, "2", "etcd")
 		if _, err := os.Stat(standbyInfo4(fs.Lookup("data-dir").Value.String())); err != nil {
 			log.Printf("starter: Detect standby_info file exists, and add --proxy=on flag to ensure it runs in v2.0 proxy mode.")
 			log.Printf("starter: Before removing v0.4 data, --proxy=on flag MUST be added.")
