@@ -36,7 +36,7 @@ It has these top-level messages:
 */
 package testdata
 
-import proto "code.google.com/p/goprotobuf/proto"
+import proto "github.com/coreos/etcd-starter/Godeps/_workspace/src/code.google.com/p/goprotobuf/proto"
 import math "math"
 
 // Reference imports to suppress errors if they are not otherwise used.

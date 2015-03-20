@@ -20,10 +20,10 @@ import (
 	"net/http"
 	"path"
 
-	pioutil "github.com/coreos/etcd/pkg/ioutil"
-	"github.com/coreos/etcd/pkg/types"
-	"github.com/coreos/etcd/raft/raftpb"
-	"golang.org/x/net/context"
+	pioutil "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/ioutil"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/types"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/raft/raftpb"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/golang.org/x/net/context"
 )
 
 const (

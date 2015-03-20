@@ -27,14 +27,14 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/coreos/etcd/client"
-	"github.com/coreos/etcd/etcdmain"
-	"github.com/coreos/etcd/migrate"
-	"github.com/coreos/etcd/pkg/flags"
-	"github.com/coreos/etcd/pkg/osutil"
-	etcdversion "github.com/coreos/etcd/version"
-	"github.com/coreos/etcd/wal"
-	"golang.org/x/net/context"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/client"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/etcdmain"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/migrate"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/flags"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/osutil"
+	etcdversion "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/version"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/wal"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/golang.org/x/net/context"
 )
 
 type version string

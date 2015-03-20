@@ -20,13 +20,13 @@ import (
 	"os"
 	"path"
 
-	pb "github.com/coreos/etcd/etcdserver/etcdserverpb"
-	"github.com/coreos/etcd/pkg/pbutil"
-	"github.com/coreos/etcd/pkg/types"
-	raftpb "github.com/coreos/etcd/raft/raftpb"
-	"github.com/coreos/etcd/snap"
-	"github.com/coreos/etcd/wal"
-	"github.com/coreos/etcd/wal/walpb"
+	pb "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/etcdserver/etcdserverpb"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/pbutil"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/types"
+	raftpb "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/raft/raftpb"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/snap"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/wal"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/wal/walpb"
 )
 
 // We need an offset in leader election terms, because term 0 is special in 2.0.

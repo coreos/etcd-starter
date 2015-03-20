@@ -33,13 +33,11 @@ import (
 	"strings"
 	"sync"
 
-	dto "github.com/prometheus/client_model/go"
-
-	"code.google.com/p/goprotobuf/proto"
-
-	"github.com/prometheus/client_golang/_vendor/goautoneg"
-	"github.com/prometheus/client_golang/model"
-	"github.com/prometheus/client_golang/text"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/code.google.com/p/goprotobuf/proto"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/prometheus/client_golang/_vendor/goautoneg"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/prometheus/client_golang/model"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/prometheus/client_golang/text"
+	dto "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/prometheus/client_model/go"
 )
 
 var (

@@ -35,7 +35,7 @@ import (
 	"testing"
 
 	pb "./testdata"
-	"code.google.com/p/goprotobuf/proto"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/code.google.com/p/goprotobuf/proto"
 )
 
 func TestGetExtensionsWithMissingExtensions(t *testing.T) {

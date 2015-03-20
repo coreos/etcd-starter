@@ -21,12 +21,12 @@ import (
 	"log"
 	"path"
 
-	etcdserverpb "github.com/coreos/etcd/etcdserver/etcdserverpb"
-	"github.com/coreos/etcd/migrate"
-	"github.com/coreos/etcd/pkg/types"
-	raftpb "github.com/coreos/etcd/raft/raftpb"
-	"github.com/coreos/etcd/wal"
-	"github.com/coreos/etcd/wal/walpb"
+	etcdserverpb "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/etcdserver/etcdserverpb"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/migrate"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/types"
+	raftpb "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/raft/raftpb"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/wal"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/wal/walpb"
 )
 
 func walDir5(dataDir string) string {

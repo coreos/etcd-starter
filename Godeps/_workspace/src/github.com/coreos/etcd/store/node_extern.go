@@ -18,7 +18,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/jonboulle/clockwork"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/jonboulle/clockwork"
 )
 
 // NodeExtern is the external representation of the

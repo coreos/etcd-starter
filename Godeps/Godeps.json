@@ -1,6 +1,9 @@
 {
 	"ImportPath": "github.com/coreos/etcd-starter",
 	"GoVersion": "go1.4.2",
+	"Packages": [
+		"./..."
+	],
 	"Deps": [
 		{
 			"ImportPath": "code.google.com/p/gogoprotobuf/proto",

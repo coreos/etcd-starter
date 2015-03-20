@@ -18,7 +18,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/coreos/etcd/pkg/types"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/types"
 )
 
 type URLsValue types.URLs

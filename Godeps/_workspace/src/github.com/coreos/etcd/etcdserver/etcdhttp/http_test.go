@@ -21,12 +21,12 @@ import (
 	"sort"
 	"testing"
 
-	etcdErr "github.com/coreos/etcd/error"
-	"github.com/coreos/etcd/etcdserver"
-	"github.com/coreos/etcd/etcdserver/etcdserverpb"
-	"github.com/coreos/etcd/pkg/types"
-	"github.com/coreos/etcd/raft/raftpb"
-	"golang.org/x/net/context"
+	etcdErr "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/error"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/etcdserver"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/etcdserver/etcdserverpb"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/types"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/raft/raftpb"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/golang.org/x/net/context"
 )
 
 type fakeCluster struct {

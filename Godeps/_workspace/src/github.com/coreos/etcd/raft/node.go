@@ -17,8 +17,8 @@ package raft
 import (
 	"errors"
 
-	pb "github.com/coreos/etcd/raft/raftpb"
-	"golang.org/x/net/context"
+	pb "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/raft/raftpb"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/golang.org/x/net/context"
 )
 
 type SnapshotStatus int

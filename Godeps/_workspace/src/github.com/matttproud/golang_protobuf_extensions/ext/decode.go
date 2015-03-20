@@ -19,7 +19,7 @@ import (
 	"errors"
 	"io"
 
-	"code.google.com/p/goprotobuf/proto"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/code.google.com/p/goprotobuf/proto"
 )
 
 var errInvalidVarint = errors.New("invalid varint32 encountered")

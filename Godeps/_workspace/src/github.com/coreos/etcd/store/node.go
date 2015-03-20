@@ -19,12 +19,11 @@ import (
 	"sort"
 	"time"
 
-	etcdErr "github.com/coreos/etcd/error"
-	"github.com/jonboulle/clockwork"
+	etcdErr "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/error"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/jonboulle/clockwork"
 )
 
-// explanations of Compare function result
-const (
+const ( // explanations of Compare function result
 	CompareMatch         = 0
 	CompareIndexNotMatch = 1
 	CompareValueNotMatch = 2

@@ -24,7 +24,7 @@ import (
 	"strings"
 	"time"
 
-	"golang.org/x/net/context"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/golang.org/x/net/context"
 )
 
 const (

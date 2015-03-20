@@ -26,10 +26,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/coreos/etcd/pkg/pbutil"
-	"github.com/coreos/etcd/raft"
-	"github.com/coreos/etcd/raft/raftpb"
-	"github.com/coreos/etcd/snap/snappb"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/pbutil"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/raft"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/raft/raftpb"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/snap/snappb"
 )
 
 const (

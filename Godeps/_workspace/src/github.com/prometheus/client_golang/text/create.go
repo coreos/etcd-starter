@@ -26,7 +26,7 @@ import (
 	"io"
 	"strings"
 
-	dto "github.com/prometheus/client_model/go"
+	dto "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/prometheus/client_model/go"
 )
 
 // MetricFamilyToText converts a MetricFamily proto message into text format and
@@ -156,7 +156,7 @@ func MetricFamilyToText(out io.Writer, in *dto.MetricFamily) (int, error) {
 				if err != nil {
 					return written, err
 				}
-                        // TODO: Add +inf bucket if it's missing.
+				// TODO: Add +inf bucket if it's missing.
 			}
 			n, err = writeSample(
 				name+"_sum", metric, "", "",

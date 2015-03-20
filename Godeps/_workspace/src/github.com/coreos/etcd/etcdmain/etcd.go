@@ -27,16 +27,16 @@ import (
 	"strings"
 	"time"
 
-	"github.com/coreos/etcd/discovery"
-	"github.com/coreos/etcd/etcdserver"
-	"github.com/coreos/etcd/etcdserver/etcdhttp"
-	"github.com/coreos/etcd/pkg/cors"
-	"github.com/coreos/etcd/pkg/fileutil"
-	"github.com/coreos/etcd/pkg/osutil"
-	"github.com/coreos/etcd/pkg/transport"
-	"github.com/coreos/etcd/pkg/types"
-	"github.com/coreos/etcd/proxy"
-	"github.com/coreos/etcd/rafthttp"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/discovery"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/etcdserver"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/etcdserver/etcdhttp"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/cors"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/fileutil"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/osutil"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/transport"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/types"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/proxy"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/rafthttp"
 )
 
 type dirType string

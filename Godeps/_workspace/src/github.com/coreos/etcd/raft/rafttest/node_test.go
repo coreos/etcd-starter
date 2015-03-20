@@ -4,8 +4,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/coreos/etcd/raft"
-	"golang.org/x/net/context"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/raft"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/golang.org/x/net/context"
 )
 
 func TestBasicProgress(t *testing.T) {

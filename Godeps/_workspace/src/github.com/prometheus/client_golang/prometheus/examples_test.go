@@ -21,11 +21,9 @@ import (
 	"runtime"
 	"sort"
 
-	dto "github.com/prometheus/client_model/go"
-
-	"code.google.com/p/goprotobuf/proto"
-
-	"github.com/prometheus/client_golang/prometheus"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/code.google.com/p/goprotobuf/proto"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/prometheus/client_golang/prometheus"
+	dto "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/prometheus/client_model/go"
 )
 
 func ExampleGauge() {

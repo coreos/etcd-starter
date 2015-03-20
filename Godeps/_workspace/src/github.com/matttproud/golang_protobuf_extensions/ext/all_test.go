@@ -21,8 +21,8 @@ import (
 	"testing"
 	"testing/quick"
 
-	. "code.google.com/p/goprotobuf/proto"
-	. "code.google.com/p/goprotobuf/proto/testdata"
+	. "github.com/coreos/etcd-starter/Godeps/_workspace/src/code.google.com/p/goprotobuf/proto"
+	. "github.com/coreos/etcd-starter/Godeps/_workspace/src/code.google.com/p/goprotobuf/proto/testdata"
 )
 
 func TestWriteDelimited(t *testing.T) {

@@ -23,12 +23,12 @@ import (
 	"os"
 	"strings"
 
-	"github.com/coreos/etcd/etcdserver"
-	"github.com/coreos/etcd/pkg/cors"
-	"github.com/coreos/etcd/pkg/flags"
-	"github.com/coreos/etcd/pkg/netutil"
-	"github.com/coreos/etcd/pkg/transport"
-	"github.com/coreos/etcd/version"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/etcdserver"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/cors"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/flags"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/netutil"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/transport"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/version"
 )
 
 const (

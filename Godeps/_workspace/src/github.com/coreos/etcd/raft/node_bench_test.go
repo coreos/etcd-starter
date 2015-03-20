@@ -17,7 +17,7 @@ package raft
 import (
 	"testing"
 
-	"golang.org/x/net/context"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/golang.org/x/net/context"
 )
 
 func BenchmarkOneNode(b *testing.B) {

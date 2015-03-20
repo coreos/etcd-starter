@@ -24,11 +24,11 @@ import (
 	"path"
 	"time"
 
-	etcdserverpb "github.com/coreos/etcd/etcdserver/etcdserverpb"
-	etcd4pb "github.com/coreos/etcd/migrate/etcd4pb"
-	"github.com/coreos/etcd/pkg/types"
-	raftpb "github.com/coreos/etcd/raft/raftpb"
-	"github.com/coreos/etcd/store"
+	etcdserverpb "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/etcdserver/etcdserverpb"
+	etcd4pb "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/migrate/etcd4pb"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/types"
+	raftpb "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/raft/raftpb"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/store"
 )
 
 const etcdDefaultClusterName = "etcd-cluster"
