@@ -28,8 +28,9 @@ import (
 	"github.com/coreos/etcd-starter/Godeps/_workspace/src/golang.org/x/net/context"
 )
 
-func TestSendMessage(t *testing.T) {
-	// member 1
+func TestSendMessage( // member 1
+t *testing.T) {
+
 	tr := NewTransporter(&http.Transport{}, types.ID(1), types.ID(1), &fakeRaft{}, nil, newServerStats(), stats.NewLeaderStats("1"))
 	srv := httptest.NewServer(tr.Handler())
 	defer srv.Close()

@@ -25,11 +25,10 @@ import (
 	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/etcdserver/etcdserverpb"
 	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/types"
 	"github.com/coreos/etcd-starter/Godeps/_workspace/src/golang.org/x/crypto/bcrypt"
-	"github.com/coreos/etcd-starter/Godeps/_workspace/src/golang.org/x/net/context"
+	"github.com/coreos/etcd-starter/Godeps/_workspace/src/golang.org/x/net/context" // StorePermsPrefix is the internal prefix of the storage layer dedicated to storing user data.
 )
 
 const (
-	// StorePermsPrefix is the internal prefix of the storage layer dedicated to storing user data.
 	StorePermsPrefix = "/2"
 )
 
