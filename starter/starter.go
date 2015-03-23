@@ -72,7 +72,7 @@ func StartDesiredVersion(binDir string, args []string) {
 	}
 
 	ver := checkInternalVersion(fs)
-	log.Printf("starter: start etcd version %s", ver)
+	log.Printf("starter: starting etcd version %s", ver)
 	var p string
 	switch ver {
 	case internalV1:
@@ -82,8 +82,8 @@ func StartDesiredVersion(binDir string, args []string) {
 	case internalV2Proxy:
 		p = path.Join(binDir, "2", "etcd")
 		if _, err := os.Stat(standbyInfo4(fs.Lookup("data-dir").Value.String())); err != nil {
-			log.Printf("starter: Detect standby_info file exists, and add --proxy=on flag to ensure it runs in v2.0 proxy mode.")
-			log.Printf("starter: Before removing v0.4 data, --proxy=on flag MUST be added.")
+			log.Printf("starter: detected standby_info file. Adding --proxy=on flag to ensure node runs in v2.0 proxy mode.")
+			log.Printf("starter: before removing v0.4 data, --proxy=on flag MUST be added.")
 		}
 		// append proxy flag to args to trigger proxy mode
 		args = append(args, "-proxy=on")
@@ -91,7 +91,7 @@ func StartDesiredVersion(binDir string, args []string) {
 		log.Panicf("starter: unhandled start version")
 	}
 
-	log.Printf("starter: start with %s %v with env %v", p, args, syscall.Environ())
+	log.Printf("starter: starting with %s %v with env %v", p, args, syscall.Environ())
 	err = syscall.Exec(p, append([]string{p}, args...), syscall.Environ())
 	if err != nil {
 		log.Fatalf("starter: failed to execute %s: %v", p, err)
@@ -115,7 +115,7 @@ func checkInternalVersion(fs *flag.FlagSet) version {
 	if err != nil {
 		log.Fatalf("starter: failed to detect etcd version in %v: %v", dataDir, err)
 	}
-	log.Printf("starter: detect etcd version %s in %s", dataver, dataDir)
+	log.Printf("starter: detected etcd version %s in %s", dataver, dataDir)
 	switch dataver {
 	case wal.WALv2_0:
 		return internalV2
