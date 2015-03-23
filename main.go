@@ -24,17 +24,68 @@
 package main
 
 import (
+	"flag"
+	"fmt"
 	"os"
+	"regexp"
 
 	"github.com/coreos/etcd-starter/starter"
 )
 
 const defaultInternalBinaryDir = "/usr/libexec/etcd/internal_versions/"
 
+const usage = `usage: etcd-starter [flags]
+start v0.4 or v2.0 etcd server based on the layout of data directory and the content inside wal and snapshot
+
+etcd-starter --version
+show the version of etcd-starter and exit.
+
+etcd-starter -h | --help
+show the help information about etcd
+
+etcd-starter [etcd flags]
+start v0.4 or v2.0 etcd using the given flags
+
+Please check etcd documents for more information about etcd flag usage.
+`
+
+var (
+	showVersion bool
+)
+
 func main() {
+	fs := flag.NewFlagSet("etcd-starter", flag.ContinueOnError)
+	fs.BoolVar(&showVersion, "version", false, "print version and exit")
+	fs.Usage = func() {
+		fmt.Println(usage)
+		os.Exit(0)
+	}
+
+	mainArgs, etcdArgs := filterArgs()
+	fs.Parse(mainArgs)
+
+	if showVersion {
+		fmt.Println("etcd-starter version", version)
+		os.Exit(0)
+	}
+
 	dir := os.Getenv("ETCD_INTERNAL_BINARY_DIR")
 	if dir == "" {
 		dir = defaultInternalBinaryDir
 	}
-	starter.StartDesiredVersion(dir, os.Args[1:])
+	starter.StartDesiredVersion(dir, etcdArgs)
+}
+
+func filterArgs() ([]string, []string) {
+	mainArgs := make([]string, 0)
+	etcdArgs := make([]string, 0)
+	pattern := regexp.MustCompile("--version|-version|-h|--help|-help")
+	for _, arg := range os.Args[1:] {
+		if pattern.MatchString(arg) {
+			mainArgs = append(mainArgs, arg)
+			continue
+		}
+		etcdArgs = append(etcdArgs, arg)
+	}
+	return mainArgs, etcdArgs
 }
