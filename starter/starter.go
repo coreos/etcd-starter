@@ -163,6 +163,9 @@ func checkInternalVersion(fs *flag.FlagSet) version {
 			return internalV2
 		}
 		return ver
+	case wal.WALUnknown:
+		log.Printf("starter: unrecognized contents in data directory %s", dataDir)
+		return internalV2
 	}
 	// never reach here
 	log.Panicf("starter: unhandled etcd version in %v", dataDir)
