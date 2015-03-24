@@ -64,15 +64,16 @@ func main() {
 	mainArgs, etcdArgs := filterArgs()
 	fs.Parse(mainArgs)
 
-	if showVersion {
-		fmt.Println("etcd-starter version", version)
-		os.Exit(0)
-	}
-
 	dir := os.Getenv("ETCD_INTERNAL_BINARY_DIR")
 	if dir == "" {
 		dir = defaultInternalBinaryDir
 	}
+
+	if showVersion {
+		printVersions(dir)
+		os.Exit(0)
+	}
+
 	starter.StartDesiredVersion(dir, etcdArgs)
 }
 
