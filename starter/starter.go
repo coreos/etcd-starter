@@ -67,7 +67,7 @@ func StartDesiredVersion(binDir string, args []string) {
 	}
 
 	ver := checkInternalVersion(fs)
-	fmt.Printf("etcd-starter: starting etcd version %s", ver)
+	fmt.Printf("etcd-starter: starting etcd version %s\n", ver)
 	var p string
 	switch ver {
 	case internalV1:
@@ -77,8 +77,8 @@ func StartDesiredVersion(binDir string, args []string) {
 	case internalV2Proxy:
 		p = path.Join(binDir, "2", "etcd")
 		if _, err := os.Stat(standbyInfo4(fs.Lookup("data-dir").Value.String())); err != nil {
-			fmt.Printf("etcd-starter: detected standby_info file. Adding --proxy=on flag to ensure node runs in v2.0 proxy mode.")
-			fmt.Printf("etcd-starter: before removing v0.4 data, --proxy=on flag MUST be added.")
+			fmt.Printf("etcd-starter: detected standby_info file. Adding --proxy=on flag to ensure node runs in v2.0 proxy mode.\n")
+			fmt.Printf("etcd-starter: before removing v0.4 data, --proxy=on flag MUST be added.\n")
 		}
 		// append proxy flag to args to trigger proxy mode
 		args = append(args, "-proxy=on")
@@ -86,7 +86,7 @@ func StartDesiredVersion(binDir string, args []string) {
 		log.Panicf("etcd-starter: unhandled start version")
 	}
 
-	fmt.Printf("etcd-starter: starting with %s %v with env %v", p, args, syscall.Environ())
+	fmt.Printf("etcd-starter: starting with %s %v with env %v\n", p, args, syscall.Environ())
 	err = syscall.Exec(p, append([]string{p}, args...), syscall.Environ())
 	if err != nil {
 		log.Fatalf("etcd-starter: failed to execute %s: %v", p, err)
@@ -103,7 +103,7 @@ func checkInternalVersion(fs *flag.FlagSet) version {
 
 	dataDir := fs.Lookup("data-dir").Value.String()
 	if dataDir == "" {
-		fmt.Printf("etcd-starter: data-dir is not set")
+		fmt.Printf("etcd-starter: data-dir is not set\n")
 		return internalV2
 	}
 	// check the data directory
@@ -111,7 +111,7 @@ func checkInternalVersion(fs *flag.FlagSet) version {
 	if err != nil {
 		log.Fatalf("etcd-starter: failed to detect etcd version in %v: %v", dataDir, err)
 	}
-	fmt.Printf("etcd-starter: detected etcd version %s in %s", dataver, dataDir)
+	fmt.Printf("etcd-starter: detected etcd version %s in %s\n", dataver, dataDir)
 	switch dataver {
 	case wal.WALv2_0:
 		return internalV2
@@ -128,7 +128,7 @@ func checkInternalVersion(fs *flag.FlagSet) version {
 		if inStandbyMode {
 			ver, err := checkInternalVersionByClientURLs(standbyInfo.ClientURLs(), clientTLSInfo(fs))
 			if err != nil {
-				fmt.Printf("etcd-starter: failed to check start version through peers: %v", err)
+				fmt.Printf("etcd-starter: failed to check start version through peers: %v\n", err)
 				return internalV1
 			}
 			if ver == internalV2 {
@@ -147,7 +147,7 @@ func checkInternalVersion(fs *flag.FlagSet) version {
 		discovery := fs.Lookup("discovery").Value.String()
 		dpeers, err := getPeersFromDiscoveryURL(discovery)
 		if err != nil {
-			fmt.Printf("etcd-starter: failed to get peers from discovery %s: %v", discovery, err)
+			fmt.Printf("etcd-starter: failed to get peers from discovery %s: %v\n", discovery, err)
 		}
 		peerStr := fs.Lookup("peers").Value.String()
 		ppeers := getPeersFromPeersFlag(peerStr, peerTLSInfo(fs))
@@ -155,12 +155,12 @@ func checkInternalVersion(fs *flag.FlagSet) version {
 		urls := getClientURLsByPeerURLs(append(dpeers, ppeers...), peerTLSInfo(fs))
 		ver, err := checkInternalVersionByClientURLs(urls, clientTLSInfo(fs))
 		if err != nil {
-			fmt.Printf("etcd-starter: failed to check start version through peers: %v", err)
+			fmt.Printf("etcd-starter: failed to check start version through peers: %v\n", err)
 			return internalV2
 		}
 		return ver
 	case wal.WALUnknown:
-		fmt.Printf("etcd-starter: unrecognized contents in data directory %s", dataDir)
+		fmt.Printf("etcd-starter: unrecognized contents in data directory %s\n", dataDir)
 		return internalV2
 	}
 	// never reach here
@@ -210,19 +210,19 @@ func checkInternalVersionByDataDir4(dataDir string) (version, error) {
 func getClientURLsByPeerURLs(peers []string, tls *TLSInfo) []string {
 	c, err := newDefaultClient(tls)
 	if err != nil {
-		fmt.Printf("etcd-starter: new client error: %v", err)
+		fmt.Printf("etcd-starter: new client error: %v\n", err)
 		return nil
 	}
 	var urls []string
 	for _, u := range peers {
 		resp, err := c.Get(u + "/etcdURL")
 		if err != nil {
-			fmt.Printf("etcd-starter: failed to get /etcdURL from %s", u)
+			fmt.Printf("etcd-starter: failed to get /etcdURL from %s\n", u)
 			continue
 		}
 		b, err := ioutil.ReadAll(resp.Body)
 		if err != nil {
-			fmt.Printf("etcd-starter: failed to read body from %s", u)
+			fmt.Printf("etcd-starter: failed to read body from %s\n", u)
 			continue
 		}
 		urls = append(urls, string(b))
@@ -238,19 +238,19 @@ func checkInternalVersionByClientURLs(urls []string, tls *TLSInfo) (version, err
 	for _, u := range urls {
 		resp, err := c.Get(u + "/version")
 		if err != nil {
-			fmt.Printf("etcd-starter: failed to get /version from %s", u)
+			fmt.Printf("etcd-starter: failed to get /version from %s\n", u)
 			continue
 		}
 		b, err := ioutil.ReadAll(resp.Body)
 		if err != nil {
-			fmt.Printf("etcd-starter: failed to read body from %s", u)
+			fmt.Printf("etcd-starter: failed to read body from %s\n", u)
 			continue
 		}
 
 		var m map[string]string
 		err = json.Unmarshal(b, &m)
 		if err != nil {
-			fmt.Printf("etcd-starter: failed to unmarshal body %s from %s", b, u)
+			fmt.Printf("etcd-starter: failed to unmarshal body %s from %s\n", b, u)
 			continue
 		}
 		switch m["internalVersion"] {
@@ -259,7 +259,7 @@ func checkInternalVersionByClientURLs(urls []string, tls *TLSInfo) (version, err
 		case "2":
 			return internalV2, nil
 		default:
-			fmt.Printf("etcd-starter: unrecognized internal version %s from %s", m["internalVersion"], u)
+			fmt.Printf("etcd-starter: unrecognized internal version %s from %s\n", m["internalVersion"], u)
 		}
 	}
 	return internalUnknown, fmt.Errorf("failed to get version from urls %v", urls)
@@ -346,11 +346,12 @@ type boolFlag interface {
 // environment variables.
 func parseConfig(args []string) (*flag.FlagSet, error) {
 	fs := flag.NewFlagSet("full flagset", flag.ContinueOnError)
+	fs.Usage = func() {}
 	etcdmain.NewConfig().VisitAll(func(f *flag.Flag) {
 		_, isBoolFlag := f.Value.(boolFlag)
 		fs.Var(&value{isBoolFlag: isBoolFlag}, f.Name, "")
 	})
-	if err := fs.Parse(args); err != nil {
+	if err := fs.Parse(args); err != nil && err != flag.ErrHelp {
 		return nil, err
 	}
 	if err := flags.SetFlagsFromEnv(fs); err != nil {
