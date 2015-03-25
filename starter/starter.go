@@ -32,7 +32,6 @@ import (
 	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/migrate"
 	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/flags"
 	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/osutil"
-	etcdversion "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/version"
 	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/wal"
 	"github.com/coreos/etcd-starter/Godeps/_workspace/src/golang.org/x/net/context"
 )
@@ -66,13 +65,9 @@ func StartDesiredVersion(binDir string, args []string) {
 	if err != nil {
 		return
 	}
-	if fs.Lookup("version").Value.String() == "true" {
-		fmt.Println("etcd version", etcdversion.Version)
-		os.Exit(0)
-	}
 
 	ver := checkInternalVersion(fs)
-	log.Printf("starter: starting etcd version %s", ver)
+	fmt.Printf("etcd-starter: starting etcd version %s", ver)
 	var p string
 	switch ver {
 	case internalV1:
@@ -82,19 +77,19 @@ func StartDesiredVersion(binDir string, args []string) {
 	case internalV2Proxy:
 		p = path.Join(binDir, "2", "etcd")
 		if _, err := os.Stat(standbyInfo4(fs.Lookup("data-dir").Value.String())); err != nil {
-			log.Printf("starter: detected standby_info file. Adding --proxy=on flag to ensure node runs in v2.0 proxy mode.")
-			log.Printf("starter: before removing v0.4 data, --proxy=on flag MUST be added.")
+			fmt.Printf("etcd-starter: detected standby_info file. Adding --proxy=on flag to ensure node runs in v2.0 proxy mode.")
+			fmt.Printf("etcd-starter: before removing v0.4 data, --proxy=on flag MUST be added.")
 		}
 		// append proxy flag to args to trigger proxy mode
 		args = append(args, "-proxy=on")
 	default:
-		log.Panicf("starter: unhandled start version")
+		log.Panicf("etcd-starter: unhandled start version")
 	}
 
-	log.Printf("starter: starting with %s %v with env %v", p, args, syscall.Environ())
+	fmt.Printf("etcd-starter: starting with %s %v with env %v", p, args, syscall.Environ())
 	err = syscall.Exec(p, append([]string{p}, args...), syscall.Environ())
 	if err != nil {
-		log.Fatalf("starter: failed to execute %s: %v", p, err)
+		log.Fatalf("etcd-starter: failed to execute %s: %v", p, err)
 	}
 }
 
@@ -108,14 +103,15 @@ func checkInternalVersion(fs *flag.FlagSet) version {
 
 	dataDir := fs.Lookup("data-dir").Value.String()
 	if dataDir == "" {
-		log.Fatalf("starter: please set --data-dir or ETCD_DATA_DIR for etcd")
+		fmt.Printf("etcd-starter: data-dir is not set")
+		return internalV2
 	}
 	// check the data directory
 	dataver, err := wal.DetectVersion(dataDir)
 	if err != nil {
-		log.Fatalf("starter: failed to detect etcd version in %v: %v", dataDir, err)
+		log.Fatalf("etcd-starter: failed to detect etcd version in %v: %v", dataDir, err)
 	}
-	log.Printf("starter: detected etcd version %s in %s", dataver, dataDir)
+	fmt.Printf("etcd-starter: detected etcd version %s in %s", dataver, dataDir)
 	switch dataver {
 	case wal.WALv2_0:
 		return internalV2
@@ -126,13 +122,13 @@ func checkInternalVersion(fs *flag.FlagSet) version {
 	case wal.WALv0_4:
 		standbyInfo, err := migrate.DecodeStandbyInfo4FromFile(standbyInfo4(dataDir))
 		if err != nil && !os.IsNotExist(err) {
-			log.Fatalf("starter: failed to decode standbyInfo in %v: %v", dataDir, err)
+			log.Fatalf("etcd-starter: failed to decode standbyInfo in %v: %v", dataDir, err)
 		}
 		inStandbyMode := standbyInfo != nil && standbyInfo.Running
 		if inStandbyMode {
 			ver, err := checkInternalVersionByClientURLs(standbyInfo.ClientURLs(), clientTLSInfo(fs))
 			if err != nil {
-				log.Printf("starter: failed to check start version through peers: %v", err)
+				fmt.Printf("etcd-starter: failed to check start version through peers: %v", err)
 				return internalV1
 			}
 			if ver == internalV2 {
@@ -144,14 +140,14 @@ func checkInternalVersion(fs *flag.FlagSet) version {
 		}
 		ver, err := checkInternalVersionByDataDir4(dataDir)
 		if err != nil {
-			log.Fatalf("starter: failed to check start version in %v: %v", dataDir, err)
+			log.Fatalf("etcd-starter: failed to check start version in %v: %v", dataDir, err)
 		}
 		return ver
 	case wal.WALNotExist:
 		discovery := fs.Lookup("discovery").Value.String()
 		dpeers, err := getPeersFromDiscoveryURL(discovery)
 		if err != nil {
-			log.Printf("starter: failed to get peers from discovery %s: %v", discovery, err)
+			fmt.Printf("etcd-starter: failed to get peers from discovery %s: %v", discovery, err)
 		}
 		peerStr := fs.Lookup("peers").Value.String()
 		ppeers := getPeersFromPeersFlag(peerStr, peerTLSInfo(fs))
@@ -159,16 +155,16 @@ func checkInternalVersion(fs *flag.FlagSet) version {
 		urls := getClientURLsByPeerURLs(append(dpeers, ppeers...), peerTLSInfo(fs))
 		ver, err := checkInternalVersionByClientURLs(urls, clientTLSInfo(fs))
 		if err != nil {
-			log.Printf("starter: failed to check start version through peers: %v", err)
+			fmt.Printf("etcd-starter: failed to check start version through peers: %v", err)
 			return internalV2
 		}
 		return ver
 	case wal.WALUnknown:
-		log.Printf("starter: unrecognized contents in data directory %s", dataDir)
+		fmt.Printf("etcd-starter: unrecognized contents in data directory %s", dataDir)
 		return internalV2
 	}
 	// never reach here
-	log.Panicf("starter: unhandled etcd version in %v", dataDir)
+	log.Panicf("etcd-starter: unhandled etcd version in %v", dataDir)
 	return internalUnknown
 }
 
@@ -214,19 +210,19 @@ func checkInternalVersionByDataDir4(dataDir string) (version, error) {
 func getClientURLsByPeerURLs(peers []string, tls *TLSInfo) []string {
 	c, err := newDefaultClient(tls)
 	if err != nil {
-		log.Printf("starter: new client error: %v", err)
+		fmt.Printf("etcd-starter: new client error: %v", err)
 		return nil
 	}
 	var urls []string
 	for _, u := range peers {
 		resp, err := c.Get(u + "/etcdURL")
 		if err != nil {
-			log.Printf("starter: failed to get /etcdURL from %s", u)
+			fmt.Printf("etcd-starter: failed to get /etcdURL from %s", u)
 			continue
 		}
 		b, err := ioutil.ReadAll(resp.Body)
 		if err != nil {
-			log.Printf("starter: failed to read body from %s", u)
+			fmt.Printf("etcd-starter: failed to read body from %s", u)
 			continue
 		}
 		urls = append(urls, string(b))
@@ -242,19 +238,19 @@ func checkInternalVersionByClientURLs(urls []string, tls *TLSInfo) (version, err
 	for _, u := range urls {
 		resp, err := c.Get(u + "/version")
 		if err != nil {
-			log.Printf("starter: failed to get /version from %s", u)
+			fmt.Printf("etcd-starter: failed to get /version from %s", u)
 			continue
 		}
 		b, err := ioutil.ReadAll(resp.Body)
 		if err != nil {
-			log.Printf("starter: failed to read body from %s", u)
+			fmt.Printf("etcd-starter: failed to read body from %s", u)
 			continue
 		}
 
 		var m map[string]string
 		err = json.Unmarshal(b, &m)
 		if err != nil {
-			log.Printf("starter: failed to unmarshal body %s from %s", b, u)
+			fmt.Printf("etcd-starter: failed to unmarshal body %s from %s", b, u)
 			continue
 		}
 		switch m["internalVersion"] {
@@ -263,7 +259,7 @@ func checkInternalVersionByClientURLs(urls []string, tls *TLSInfo) (version, err
 		case "2":
 			return internalV2, nil
 		default:
-			log.Printf("starter: unrecognized internal version %s from %s", m["internalVersion"], u)
+			fmt.Printf("etcd-starter: unrecognized internal version %s from %s", m["internalVersion"], u)
 		}
 	}
 	return internalUnknown, fmt.Errorf("failed to get version from urls %v", urls)
