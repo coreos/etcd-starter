@@ -32,7 +32,6 @@ import (
 	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/migrate"
 	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/flags"
 	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/pkg/osutil"
-	etcdversion "github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/version"
 	"github.com/coreos/etcd-starter/Godeps/_workspace/src/github.com/coreos/etcd/wal"
 	"github.com/coreos/etcd-starter/Godeps/_workspace/src/golang.org/x/net/context"
 )
@@ -65,10 +64,6 @@ func StartDesiredVersion(binDir string, args []string) {
 	fs, err := parseConfig(args)
 	if err != nil {
 		return
-	}
-	if fs.Lookup("version").Value.String() == "true" {
-		fmt.Println("etcd version", etcdversion.Version)
-		os.Exit(0)
 	}
 
 	ver := checkInternalVersion(fs)

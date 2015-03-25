@@ -25,6 +25,7 @@ package main
 
 import (
 	"os"
+	"path"
 
 	"github.com/coreos/etcd-starter/starter"
 )
@@ -35,6 +36,14 @@ func main() {
 	dir := os.Getenv("ETCD_INTERNAL_BINARY_DIR")
 	if dir == "" {
 		dir = defaultInternalBinaryDir
+	}
+	// etcd-starter -version [--version] is our special case here.
+	// we want our users to know all the version etcd-starter is operating on.
+	if path.Base(os.Args[0]) == "etcd-starter" {
+		if len(os.Args) == 2 && (os.Args[1] == "-version" || os.Args[1] == "--version") {
+			printVersions(dir)
+			return
+		}
 	}
 	starter.StartDesiredVersion(dir, os.Args[1:])
 }
