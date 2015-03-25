@@ -103,7 +103,8 @@ func checkInternalVersion(fs *flag.FlagSet) version {
 
 	dataDir := fs.Lookup("data-dir").Value.String()
 	if dataDir == "" {
-		log.Fatalf("starter: please set --data-dir or ETCD_DATA_DIR for etcd")
+		log.Printf("starter: data-dir is not set")
+		return internalV2
 	}
 	// check the data directory
 	dataver, err := wal.DetectVersion(dataDir)
