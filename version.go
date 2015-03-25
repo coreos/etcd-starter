@@ -7,7 +7,7 @@ import (
 	"path"
 )
 
-const version = "0.0.3"
+const version = "0.0.3+git"
 
 func printVersions(binarydir string) {
 	fmt.Println("etcd-starter version", version)
