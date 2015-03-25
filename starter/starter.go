@@ -346,11 +346,12 @@ type boolFlag interface {
 // environment variables.
 func parseConfig(args []string) (*flag.FlagSet, error) {
 	fs := flag.NewFlagSet("full flagset", flag.ContinueOnError)
+	fs.Usage = func() {}
 	etcdmain.NewConfig().VisitAll(func(f *flag.Flag) {
 		_, isBoolFlag := f.Value.(boolFlag)
 		fs.Var(&value{isBoolFlag: isBoolFlag}, f.Name, "")
 	})
-	if err := fs.Parse(args); err != nil {
+	if err := fs.Parse(args); err != nil && err != flag.ErrHelp {
 		return nil, err
 	}
 	if err := flags.SetFlagsFromEnv(fs); err != nil {
